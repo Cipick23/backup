@@ -1,64 +1,79 @@
 /* Header.module.css */
 .header {
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  /* ... alte stiluri ... */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+  min-width: 440px;
+  background-color: #fff;
+  width: 80%;
+  max-width: 550px;
+  margin: 12px auto;
+  padding: 1em;
+  box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25),
+    inset 0 -3px 2px 0 rgba(0, 0, 0, 0.1);
+  background: linear-gradient(276deg, #2e1746 3.19%, #2e225f 100%);
 }
 
-.boxModel {
+.boxModelLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
   width: 115px;
   height: 48px;
 }
 
+.baseTypography {
+  font-family: var(--font-family);
+  font-weight: 400;
+  font-size: 17px;
+  color: #fff;
+  text-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.box {
+  width: 161px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  max-width: 400px;
+}
+
 .list {
   list-style-type: none;
-}
-
-.sidebar {
-  background: #fefefe;
-  height: 100vh;
-  width: 100%;
-}
-
-.sidebarBrandBox {
-  background: #55ec8f;
-  height: 80px;
-}
-
-.sidebarUl {
   display: flex;
   flex-direction: row;
-  gap: 16px;
-  list-style-type: none;
 }
 
-.sidebarLi {
-  color: #ff6b0a;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 1.25px;
-  font-weight: 700;
-  text-transform: uppercase;
-  cursor: pointer;
+.exitBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: transparent;
+  font-family: Poppins Regular, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
 }
 
-.navLink {
-  color: #fff;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 1.25px;
-  font-weight: 700;
-  text-transform: uppercase;
-  cursor: pointer;
-  text-decoration: none;
-}
+.userNameHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: transparent;
+  font-family: Poppins Regular, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
 
-.navLink a:hover,
-.navLink a:focus {
-  text-decoration: underline;
-}
+  .userNameHeader:hover {
+    text-decoration: none;
+  }
 
-.navLinkActive {
-  color: #258b25 !important;
+  .userNameHeader:active {
+    transform: translateY(2px);
+  }
 }
