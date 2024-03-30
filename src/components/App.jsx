@@ -6,6 +6,7 @@ import { React, useEffect } from 'react';
 import { refreshUser } from '../redux/authorisation/operations';
 import { useAuth } from '../hooks/useAuth';
 import { useDispatch } from 'react-redux';
+import Dashboard from 'pages/DashboardPage/Dashboard';
 
 // const HomePage = lazy(() => import('../pages/HomePage/Home'));
 // const RegisterPage = lazy(() => import('../pages/RegisterPage/Register'));
@@ -27,7 +28,9 @@ const App = () => {
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
-    <>App</>
+    <>
+      <Dashboard />
+    </>
     // <Routes>
     //   <Route
     //     path="/"

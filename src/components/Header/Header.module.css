@@ -6,6 +6,11 @@
   /* ... alte stiluri ... */
 }
 
+.boxModel {
+  width: 115px;
+  height: 48px;
+}
+
 .list {
   list-style-type: none;
 }
