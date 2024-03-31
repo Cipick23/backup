@@ -103,7 +103,7 @@ const Header = () => {
       <ul className={css.box}>
         <nav className={css.list}>
           <NavLink to="/" className={css.userNameHeader}>
-            name
+            {/* name */}
             {user.name}
           </NavLink>
 
@@ -141,14 +141,14 @@ const Header = () => {
         </nav>
       </ul>
       {/* {isModalOpen && (
-        <Modal onClose={handleCloseModal}>
-          <p>Are you sure you want to log out?</p>
-          <button onClick={handleLogout}>Log out</button>
-          <button type="button" onClick={() => dispatch(logOut())}>
-            Exit
-          </button>
-        </Modal>
-      )} */}
+            <Modal onClose={handleCloseModal}>
+              <p>Are you sure you want to log out?</p>
+              <button onClick={handleLogout}>Log out</button>
+              <button type="button" onClick={() => dispatch(logOut())}>
+                Exit
+              </button>
+            </Modal>
+            )} */}
     </div>
   );
 };

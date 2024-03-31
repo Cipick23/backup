@@ -1,14 +1,13 @@
 /* Header.module.css */
 .header {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
+  align-items: center; /* Pentru a alinia vertical butonul de exit */
   gap: 30px;
   min-width: 440px;
   background-color: #fff;
-  width: 80%;
-  max-width: 550px;
-  margin: 12px auto;
+  width: 100%;
+  margin: 0px;
   padding: 1em;
   box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25),
     inset 0 -3px 2px 0 rgba(0, 0, 0, 0.1);
