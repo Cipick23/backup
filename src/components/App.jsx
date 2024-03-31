@@ -1,46 +1,42 @@
 import { React, useEffect } from 'react';
+// import { lazy } from 'react';
 // import { Routes, Route } from 'react-router-dom';
 // import { Layout } from './Layout';
 // import { PrivateRoute } from '../Routes/PrivateRoute';
 // import { RestrictedRoute } from '../Routes/RestrictedRoute';
 import { refreshUser } from '../redux/authorisation/operations';
-import { useAuth } from '../hooks/useAuth';
+// import { useAuth } from '../hooks/useAuth';
 import { useDispatch } from 'react-redux';
-import Dashboard from 'pages/DashboardPage/Dashboard';
-import MediaQuery from 'react-responsive';
-
+import Dashboard from '../pages/DashboardPage/Dashboard';
+// import MediaQuery from 'react-responsive';
+import { RegisterForm } from './RegisterForm/RegisterForm';
+import StatisticsPage from '../pages/StatisticsPage/Statistics';
 // const HomePage = lazy(() => import('../pages/HomePage/Home'));
 // const RegisterPage = lazy(() => import('../pages/RegisterPage/Register'));
 // const LoginPage = lazy(() => import('../pages/LoginPage/Login'));
 // const DashboardPage = lazy(() => import('../pages/DashboardPage/Dashboard'));
-// const StatiscticsPage = lazy(() =>
-//   import('../pages/StatisticsPage/Statistics')
-// );
+// const StatisticsPage = lazy(() => import('../pages/StatisticsPage/Statistics'));
 // const CurrencyPage = lazy(() => import('../pages/CurrencyPage/Currency'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing } = useAuth();
+  // const { isRefreshing } = useAuth();
 
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  return isRefreshing ? (
-    <b>Refreshing user...</b>
-  ) : (
-    <>
-      <MediaQuery minWidth={1224}>
-        <Dashboard />
-        <MediaQuery minWidth={1824}>
-          <Dashboard />
-        </MediaQuery>
-      </MediaQuery>
-      <MediaQuery minResolution="2dppx">
-        {/* You can also use a function (render prop) as a child */}
-        {matches => (matches ? <Dashboard /> : <Dashboard />)}
-      </MediaQuery>
-    </>
+  return (
+    <div>
+      {/* isRefreshing ? (<b>Refreshing user...</b>) : (
+      <>
+        App
+        <RegisterForm />
+      </> */}
+      <RegisterForm />
+      <StatisticsPage />
+      <Dashboard />
+    </div>
     // <Routes>
     //   <Route
     //     path="/"
@@ -70,14 +66,7 @@ const App = () => {
     //         </PrivateRoute>
     //       }
     //     />
-    //     <Route
-    //       path="/statistics"
-    //       element={
-    //         <PrivateRoute>
-    //           <StatiscticsPage />
-    //         </PrivateRoute>
-    //       }
-    //     />
+    //
 
     //     <Route
     //       path="/currency"

@@ -10,6 +10,7 @@ export const Navigation = () => {
     {
       id: '1',
       name: 'Home',
+      // icon: '',
       path: '/',
     },
     {
