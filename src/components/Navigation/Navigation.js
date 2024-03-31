@@ -35,7 +35,7 @@ export const Navigation = () => {
       <ul className={css.sidebarUl}>
         {' '}
         {menuItems.map(item => (
-          <li key={item.id} className={css.listLi}>
+          <li key={item.id} className={css.sidebarLi}>
             <NavLink
               key={item.id}
               to={item.path}
