@@ -1,20 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { authReducer } from './authorisation/slice';
-import { statisticsReducer } from './statistics/slice';
 import {
+  persistStore,
   FLUSH,
+  REHYDRATE,
   PAUSE,
   PERSIST,
   PURGE,
   REGISTER,
-  REHYDRATE,
-  persistStore,
 } from 'redux-persist';
+import { PersistedAuthReducer } from '../redux/authorisation/slice';
+import { statisticsReducer } from './statistics/slice';
+import { PersistedTransactionReducer } from './transactions/slice';
+import balanceReducer from './balance/balanceSlice'; // Balance Backend Ciprian
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
+    auth: PersistedAuthReducer,
     statistics: statisticsReducer,
+    transactions: PersistedTransactionReducer,
+    balance: balanceReducer, // Balance Backend Ciprian
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -23,4 +27,5 @@ export const store = configureStore({
       },
     }),
 });
+
 export const persistor = persistStore(store);
