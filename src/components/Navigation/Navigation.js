@@ -4,7 +4,6 @@ import css from './Navigation.module.css';
 // import { SlChart, SlHome } from 'react-icons/sl';
 import { selectIsLoggedIn } from '../../redux/authorisation/selectors';
 import { SlChart, SlHome } from 'react-icons/sl';
-import { Balance } from '../Balance/Balance';
 import { RiMoneyDollarBoxLine } from 'react-icons/ri';
 
 export const Navigation = () => {
@@ -46,12 +45,6 @@ export const Navigation = () => {
           )}
         </nav>
       </section>
-
-      <div className={css.linksBox}>
-        <Balance />
-      </div>
-
-      <div className={css.currencyBox}>{/* <Currency /> */}</div>
     </div>
   );
 };
