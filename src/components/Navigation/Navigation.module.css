@@ -1,14 +1,13 @@
 /* mobile responsive */
 .responsiveBox {
   background: url(../../assets//statisticsPage-background-d.webp);
-  height: 38vh;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .link {
-  display: inline-block;
+  display: flex;
   text-decoration: none;
   padding: 12px;
   font-family: Poppins Regular, sans-serif;
@@ -20,6 +19,10 @@
     color: #ffffff99;
     font-weight: 700;
   }
+}
+
+.nameHidden {
+  display: none;
 }
 
 .linkCurrency {
@@ -41,12 +44,51 @@
   margin-right: 15px;
 }
 
+.linksBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 /* laptop responsive */
 @media only screen and (min-width: 768px) {
   .responsiveBox {
     flex-direction: row;
     display: flex;
     width: 100%;
+    height: 30vh;
+    padding: 20px;
+  }
+
+  .linksBox {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .nameHidden {
+    display: inline;
+  }
+
+  .currencyBox {
+    display: none;
+  }
+
+  .link {
+    display: flex;
+    text-decoration: none;
+    font-family: Poppins Regular, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: #fbfbfb;
+
+    .link.active {
+      color: #ffffff99;
+      font-weight: 700;
+    }
   }
 
   .linkCurrency {
@@ -56,6 +98,16 @@
   .iconMargin {
     margin-right: 15px;
   }
+
+  .LinksBox {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+  }
+
+  .currencyBox {
+    display: none;
+  }
 }
 
 /* desktop responsive */
@@ -63,10 +115,9 @@
   .responsiveBox {
     background: url(../../assets//statisticsPage-background-d.webp);
     height: 100vh;
-    width: 100%;
+    width: 40%;
     display: flex;
     flex-direction: column;
-    display: flex;
   }
 
   .link {
@@ -90,5 +141,14 @@
 
   .iconMargin {
     margin-right: 15px;
+  }
+
+  .LinksBox {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .currencyBox {
+    display: none;
   }
 }

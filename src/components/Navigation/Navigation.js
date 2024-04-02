@@ -19,7 +19,7 @@ export const Navigation = () => {
               <span className={css.iconMargin}>
                 <SlHome />
               </span>
-              Home
+              <p className={css.nameHidden}>Home</p>
             </h3>
           </NavLink>
 
@@ -29,7 +29,7 @@ export const Navigation = () => {
                 <span className={css.iconMargin}>
                   <SlChart />
                 </span>
-                Statistics
+                <p className={css.nameHidden}>Statistics</p>
               </h3>
             </NavLink>
           )}
@@ -39,7 +39,7 @@ export const Navigation = () => {
                 <span className={css.iconMargin}>
                   <RiMoneyDollarBoxLine />
                 </span>
-                Currency
+                <p className={css.nameHidden}>Currency</p>
               </h3>
             </NavLink>
           )}
