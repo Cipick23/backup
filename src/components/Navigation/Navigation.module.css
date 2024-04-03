@@ -1,23 +1,25 @@
-/* Navigation.module.css */
+/* mobile responsive */
 .responsiveBox {
   background: url(../../assets//statisticsPage-background-d.webp);
+  height: 38vh;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .link {
-  display: flex;
+  display: inline-block;
   text-decoration: none;
   padding: 12px;
   font-family: Poppins Regular, sans-serif;
   font-weight: 400;
   font-size: 18px;
   color: #fbfbfb;
-}
 
-.nameHidden {
-  display: none;
+  .link.active {
+    color: #ffffff99;
+    font-weight: 700;
+  }
 }
 
 .linkCurrency {
@@ -28,6 +30,11 @@
   font-weight: 400;
   font-size: 18px;
   color: #fbfbfb;
+
+  .link.active {
+    color: #ffffff99;
+    font-weight: 700;
+  }
 }
 
 .iconMargin {
@@ -36,42 +43,23 @@
 
 .linksBox {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
 }
 
+.currencyBox {
+  display: flex;
+}
+
+/* laptop responsive */
 @media only screen and (min-width: 768px) {
   .responsiveBox {
     flex-direction: row;
-    width: 100%;
-    height: 30vh;
-    padding: 20px;
-  }
-
-  .linksBox {
     display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
-    margin-bottom: 40px;
-  }
-
-  .nameHidden {
-    display: inline;
+    width: 100%;
   }
 
   .currencyBox {
     display: none;
-  }
-
-  .link {
-    display: flex;
-    text-decoration: none;
-    font-family: Poppins Regular, sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    color: #fbfbfb;
   }
 
   .linkCurrency {
@@ -85,7 +73,6 @@
   .LinksBox {
     display: flex;
     flex-direction: column;
-    padding: 0px;
   }
 
   .currencyBox {
@@ -93,11 +80,12 @@
   }
 }
 
+/* desktop responsive */
 @media only screen and (min-width: 1280px) {
   .responsiveBox {
     background: url(../../assets//statisticsPage-background-d.webp);
     height: 100vh;
-    width: 100%;
+    width: 40%;
     display: flex;
     flex-direction: column;
   }
@@ -110,6 +98,11 @@
     font-weight: 400;
     font-size: 18px;
     color: #fbfbfb;
+
+    .link.active {
+      color: #ffffff99;
+      font-weight: 700;
+    }
   }
 
   .linkCurrency {
