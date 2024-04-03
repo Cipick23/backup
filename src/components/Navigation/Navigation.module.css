@@ -1,25 +1,31 @@
-/* mobile responsive */
+/* Navigation.module.css */
+
 .responsiveBox {
   background: url(../../assets//statisticsPage-background-d.webp);
-  height: 38vh;
   width: 100%;
   display: flex;
   flex-direction: column;
 }
 
 .link {
-  display: inline-block;
+  display: flex;
   text-decoration: none;
   padding: 12px;
   font-family: Poppins Regular, sans-serif;
   font-weight: 400;
   font-size: 18px;
   color: #fbfbfb;
+  align-items: center;
+  justify-content: center;
 
-  .link.active {
-    color: #ffffff99;
-    font-weight: 700;
+  .activeLink {
+    background-color: #ffffff; /* Culoarea de fundal pentru link-ul activ */
+    color: #000000; /* Culoarea textului pentru link-ul activ */
   }
+}
+
+.nameHidden {
+  display: none;
 }
 
 .linkCurrency {
@@ -30,11 +36,6 @@
   font-weight: 400;
   font-size: 18px;
   color: #fbfbfb;
-
-  .link.active {
-    color: #ffffff99;
-    font-weight: 700;
-  }
 }
 
 .iconMargin {
@@ -43,23 +44,47 @@
 
 .linksBox {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
-.currencyBox {
-  display: flex;
-}
-
-/* laptop responsive */
 @media only screen and (min-width: 768px) {
   .responsiveBox {
     flex-direction: row;
-    display: flex;
     width: 100%;
+    height: 30vh;
+    padding: 20px;
+  }
+
+  .linksBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 40px;
+  }
+
+  .nameHidden {
+    display: inline;
   }
 
   .currencyBox {
     display: none;
+  }
+
+  .link {
+    display: flex;
+    text-decoration: none;
+    font-family: Poppins Regular, sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: #fbfbfb;
+
+    .activeLink {
+      background-color: #ffffff; /* Culoarea de fundal pentru link-ul activ */
+      color: #000000; /* Culoarea textului pentru link-ul activ */
+    }
   }
 
   .linkCurrency {
@@ -73,6 +98,7 @@
   .LinksBox {
     display: flex;
     flex-direction: column;
+    padding: 0px;
   }
 
   .currencyBox {
@@ -80,12 +106,11 @@
   }
 }
 
-/* desktop responsive */
 @media only screen and (min-width: 1280px) {
   .responsiveBox {
     background: url(../../assets//statisticsPage-background-d.webp);
     height: 100vh;
-    width: 40%;
+    width: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -99,9 +124,9 @@
     font-size: 18px;
     color: #fbfbfb;
 
-    .link.active {
-      color: #ffffff99;
-      font-weight: 700;
+    .activeLink {
+      background-color: #ffffff; /* Culoarea de fundal pentru link-ul activ */
+      color: #000000; /* Culoarea textului pentru link-ul activ */
     }
   }
 
