@@ -1,99 +1,58 @@
-import storage from 'redux-persist/lib/storage';
 import { createSlice } from '@reduxjs/toolkit';
+import {
+  addTransactionThunk,
+  allTransactionThunk,
+  deleteTransactionThunk,
+  getTransactionsCategoriesThunk,
+  updatedTransactionThunk,
+} from './operations';
+import storage from 'redux-persist/lib/storage';
 import { persistReducer } from 'redux-persist';
 
-import {
-  getAllTransactions,
-  deleteTransaction,
-  editTransaction,
-  addTransaction,
-  getCategories,
-} from './operations';
+const initialState = {
+  categories: [],
+  transactions: [],
+};
 
-export const transactionSlice = createSlice({
+const slice = createSlice({
   name: 'transactions',
-  initialState: {
-    transactions: [],
-    isLoading: false,
-    error: null,
-  },
-  extraReducers: builder =>
+  initialState,
+  extraReducers: builder => {
     builder
-      .addCase(getAllTransactions.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(getAllTransactions.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.transactions = action.payload;
-      })
-      .addCase(getAllTransactions.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(deleteTransaction.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(deleteTransaction.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-      })
-      .addCase(deleteTransaction.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(addTransaction.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(addTransaction.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.transactions.push(action.payload);
-      })
-      .addCase(addTransaction.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(getCategories.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(getCategories.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        state.categories = action.payload;
-      })
-      .addCase(getCategories.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      })
-      .addCase(editTransaction.pending, state => {
-        state.isLoading = true;
-      })
-      .addCase(editTransaction.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.error = null;
-        const updatedItem = action.payload;
-        const index = state.transactions.findIndex(
-          item => item._id === updatedItem._id
-        );
-        if (index !== -1) {
-          state.transactions[index] = updatedItem;
+      .addCase(
+        getTransactionsCategoriesThunk.fulfilled,
+        (state, { payload }) => {
+          state.categories = payload.map(category => {
+            return { value: category.id, label: category.name };
+          });
         }
+      )
+      .addCase(addTransactionThunk.fulfilled, (state, { payload }) => {
+        state.transactions.push(payload);
       })
-      .addCase(editTransaction.rejected, (state, action) => {
-        state.isLoading = false;
-        state.error = action.payload;
-      }),
+      .addCase(allTransactionThunk.fulfilled, (state, { payload }) => {
+        state.transactions = payload;
+      })
+      .addCase(deleteTransactionThunk.fulfilled, (state, { payload }) => {
+        state.transactions = state.transactions.filter(t => t.id !== payload);
+      })
+      .addCase(updatedTransactionThunk.fulfilled, (state, { payload }) => {
+        const transactionIndex = state.transactions.findIndex(
+          t => t.id === payload.id
+        );
+        state.transactions[transactionIndex] = payload;
+      });
+  },
 });
 
+const transactionsReducer = slice.reducer;
 const persistConfig = {
   key: 'transactions',
   storage,
   whitelist: ['transactions'],
 };
-
-const transactionReducer = transactionSlice.reducer;
-export const PersistedTransactionReducer = persistReducer(
+const persistedTransactionsReducer = persistReducer(
   persistConfig,
-  transactionReducer
+  transactionsReducer
 );
+export default persistedTransactionsReducer;

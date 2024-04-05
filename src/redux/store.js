@@ -8,17 +8,22 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import { PersistedAuthReducer } from '../redux/authorisation/slice';
+
+import persistedAuthReducer from '../redux/authorisation/slice';
 import { statisticsReducer } from './statistics/slice';
-import { PersistedTransactionReducer } from './transactions/slice';
-import balanceReducer from './balance/balanceSlice'; // Balance Backend Ciprian
+import persistedBalanceReducer from './balance/balanceSlice';
+import persistedTransactionsReducer from './transactions/slice';
+import { modalReducer } from '../redux/modal/slice';
+import currencyReducer from '../redux/currency/slice';
 
 export const store = configureStore({
   reducer: {
-    auth: PersistedAuthReducer,
+    auth: persistedAuthReducer,
     statistics: statisticsReducer,
-    transactions: PersistedTransactionReducer,
-    balance: balanceReducer, // Balance Backend Ciprian
+    transactions: persistedTransactionsReducer,
+    balance: persistedBalanceReducer,
+    modal: modalReducer,
+    currency: currencyReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

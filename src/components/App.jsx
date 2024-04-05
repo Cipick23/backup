@@ -1,25 +1,28 @@
-import { React, Suspense, useEffect } from 'react';
+import { React, useEffect } from 'react';
 import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-// import { Navigate } from 'react-router-dom';
+import { Suspense } from 'react';
 import { PrivateRoute } from '../Routes/PrivateRoute';
 import { RestrictedRoute } from '../Routes/RestrictedRoute';
 import { refreshUser } from '../redux/authorisation/operations';
 import { useAuth } from '../hooks/useAuth';
 import { useDispatch } from 'react-redux';
-// import { useMediaQuery } from 'react-responsive';
-// import { ToastContainer } from 'react-toastify';
-const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+import NotFoundPage from 'pages/NotFoundPage';
+import { SpinnerLoader } from './Spinner/Spinner';
+import { useMediaQuery } from 'react-responsive';
+import { ToastContainer } from 'react-toastify';
+const HomePage = lazy(() => import('../pages/HomePage/Home'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/Register'));
 const LoginPage = lazy(() => import('../pages/LoginPage/Login'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage/Dashboard'));
 const StatisticsPage = lazy(() => import('../pages/StatisticsPage/Statistics'));
-// const CurrencyPage = lazy(() => import('../pages/CurrencyPage/Currency'));
+const CurrencyPage = lazy(() => import('../pages/CurrencyPage/Currency'));
+const { Navigate } = require('react-router-dom');
 
 const App = () => {
   const dispatch = useDispatch();
   const { isLoggedIn, token } = useAuth();
-  // const isMobile = useMediaQuery({ minWidth: 240, maxWidth: 767 });
+  const isMobile = useMediaQuery({ minWidth: 240, maxWidth: 767 });
 
   useEffect(() => {
     if (!isLoggedIn && token) {
@@ -29,7 +32,7 @@ const App = () => {
 
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<SpinnerLoader />}>
         <Routes>
           <Route
             path="/"
@@ -69,24 +72,22 @@ const App = () => {
                 </PrivateRoute>
               }
             />
-            {/* {isMobile ? (
             <Route
               path="/currency"
-              element={<PrivateRoute><CurrencyPage /></PrivateRoute>}
+              element={
+                isMobile ? (
+                  <PrivateRoute>
+                    <CurrencyPage />
+                  </PrivateRoute>
+                ) : (
+                  <Navigate to={'/home'} />
+                )
+              }
             />
-          ) : (
-            <Navigate to="/home" />
-          )} */}
           </Route>
-          <Route
-            path="*"
-            element={
-              <h1 style={{ paddingTop: '300px', textAlign: 'center' }}>
-                Oh, something went wrong.
-              </h1>
-            }
-          />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
+        <ToastContainer />
       </Suspense>
     </>
   );
