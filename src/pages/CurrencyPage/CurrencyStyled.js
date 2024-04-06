@@ -1,19 +1,5 @@
 import styled from 'styled-components';
 
-export const TestDiv = styled.div`
-  display: none;
-
-  @media screen and (min-width: 768px) and (max-width: 1279px) {
-    width: 336px;
-    height: 214px;
-    background: rgba(74, 86, 226, 0.1);
-  }
-
-  @media screen and (min-width: 1280px) {
-    width: 480px;
-  }
-`;
-
 export const Graph = styled.div`
   position: relative;
   background: rgba(74, 86, 226, 0.1);

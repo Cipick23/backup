@@ -5,6 +5,7 @@ import Balance from '../SideBar/Balance/Balance';
 // import { useLocation } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { SpecialDivStyled } from './SpecialDivStyled';
+import { TeamModal } from 'components/TeamModal/TeamModal';
 
 export const DinamicSidebar = () => {
   // const location = useLocation();
@@ -18,6 +19,7 @@ export const DinamicSidebar = () => {
       <SpecialDivStyled>
         <Navigation />
         <Balance />
+        <TeamModal />
       </SpecialDivStyled>
       {/* <Currency /> */}
     </DinamicSidebarStyled>
