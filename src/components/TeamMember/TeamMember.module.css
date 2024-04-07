@@ -1,5 +1,92 @@
 /* TeamModal.module.css  */
-/* FOOTER css*/
+
+/* Backdrop.module.css */
+
+.backdrop {
+  position: fixed;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.backdrop::before {
+  background-color: rgba(34, 13, 91, 0.23);
+  content: '';
+  /* backdrop-filter: blur(3.5px); */
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+@media only screen and (min-width: 768px) {
+  .backdrop {
+    justify-content: center;
+  }
+}
+
+.blurBackground {
+  backdrop-filter: blur(3.5px);
+}
+
+.modalLayout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 40px 20px;
+  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  height: 100%;
+}
+
+.modalLayout::before {
+  background-color: var(--transparency-10);
+  content: '';
+  backdrop-filter: blur(50px);
+  position: absolute;
+  inset: 0;
+  /* z-index: -2; */
+}
+
+@media only screen and (min-width: 768px) {
+  .modalLayout {
+    position: absolute;
+    width: 590px;
+    height: 589px;
+    padding: 40px 73px;
+    border-radius: 8px;
+    height: fit-content;
+  }
+}
+
+/* closeBtnStyles.module.css */
+
+.closeBtn {
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  border: none;
+  outline: transparent;
+  background-color: transparent;
+  color: var(--white);
+  transition: color 250ms ease-in-out;
+  @media only screen and (min-width: 768px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &:hover,
+  &:focus {
+    color: var(--icon-violet);
+    cursor: pointer;
+  }
+}
 
 .footer {
   background: #f7f7f7;
@@ -46,7 +133,7 @@
 /* modal section */
 
 .footer-modal {
-  z-index: 10;
+  /* z-index: 11; */
   position: fixed;
   top: 0;
   left: 0;
@@ -108,7 +195,7 @@
 
 .footer-font-title {
   margin-top: 2px;
-  color: #000;
+  color: #ffffff;
   justify-content: center;
   align-items: center;
   font-family: 'Roboto';
@@ -136,17 +223,18 @@
 }
 
 .footer-team-card {
-  border: 2px solid #b92f2c;
-  width: 95%;
+  border: 2px solid #ffffff;
+  width: 100%;
   height: auto;
   border-radius: 20px;
   display: flex;
   flex-direction: row;
   gap: 6px;
   padding: 0;
-  box-shadow: 5px 5px 14px -3px rgba(185, 47, 44, 0.67);
-  -webkit-box-shadow: 5px 5px 14px -3px rgba(185, 47, 44, 0.67);
-  -moz-box-shadow: 5px 5px 14px -3px rgba(185, 47, 44, 0.67);
+  /* box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2); */
+  backdrop-filter: blur(100px);
+  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .card-team {
@@ -171,7 +259,7 @@
   margin: 0 auto;
   width: 70px;
   height: 70px;
-  border: 2px solid #b92f2c;
+  border: 2px solid #734aef;
   border-radius: 20px;
   object-fit: cover;
   display: block;
@@ -186,11 +274,11 @@
   align-items: center;
   justify-content: center;
   gap: 15px;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .footer-team-name {
-  color: #000;
+  color: #ffffff;
   text-align: center;
   font-size: clamp(0.625rem, 0.4583rem + 0.8333vw, 1.125rem);
   line-height: clamp(0.5206rem, 0.3942rem + 0.6323vw, 0.9rem);
@@ -221,7 +309,7 @@
   align-content: center;
   justify-content: center;
   border-radius: 100px;
-  border: 2px solid #b92f2c;
+  border: 2px solid #734aef;
   padding: 14px;
   display: flex;
   gap: 6px;
@@ -230,28 +318,42 @@
 }
 
 .footer-linkedin-icon {
+  cursor: pointer;
   width: 20px;
   height: 20px;
   display: inline-block;
   stroke-width: 0;
   stroke: currentColor;
   fill: currentColor;
-  background-image: url(../images/icons/linkedin.svg);
+  /* background-image: url(../../assets/icons/linkedin.svg); */
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 
 .footer-github-icon {
+  cursor: pointer;
   width: 20px;
   height: 20px;
   display: inline-block;
   stroke-width: 0;
   stroke: currentColor;
   fill: currentColor;
-  background-image: url(../images/icons/github.svg);
+  background-image: url(../../assets/icons/github.svg);
 }
 
 .footer-linkedin-icon:hover,
 .footer-github-icon:hover {
-  filter: invert(0.3) sepia(150%) saturate(5500%) hue-rotate(30deg);
+  background-color: #734aef;
+  border-radius: 25%;
 }
 
 .footer-dark-mode {
@@ -260,7 +362,7 @@
 }
 
 .footer-modal-cover {
-  z-index: 9;
+  /* z-index: 9; */
   position: fixed;
   top: 0;
   left: 0;

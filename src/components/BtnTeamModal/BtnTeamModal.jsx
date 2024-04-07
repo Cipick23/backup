@@ -1,35 +1,33 @@
-import React, { useState } from 'react';
-import { getTransactionsCategoriesThunk } from '../../redux/transactions/operations';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectFilteredCategories } from '../../redux/transactions/selectors';
+// BtnTeamModal.js
+import React from 'react';
 import { FcAbout } from 'react-icons/fc';
-import { TeamModal } from 'components/TeamModal/TeamModal';
 import css from './BtnTeamModal.module.css';
+import { useDispatch } from 'react-redux';
+import { toggleModal } from '../../redux/modal/slice';
 
 const svgOpenModal = <FcAbout />;
 
-export const BtnTeamModal = () => {
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+const BtnTeamModal = () => {
   const dispatch = useDispatch();
-  const transactionCategories = useSelector(selectFilteredCategories);
 
-  function openAddTransactionModal() {
-    if (!transactionCategories.length) {
-      dispatch(getTransactionsCategoriesThunk());
-    }
-    setIsAddModalOpen(true);
-  }
+  const openTeamModal = () => {
+    dispatch(toggleModal()); // Dispatchează acțiunea pentru a deschide/închide modalul
+  };
 
   return (
     <>
+      {/* Butonul pentru deschiderea modalului */}
       <button
         className={css.btnOpenModal}
         type="button"
-        onClick={openAddTransactionModal}
+        onClick={openTeamModal}
       >
         {svgOpenModal}
       </button>
-      {isAddModalOpen && <TeamModal closeModal={setIsAddModalOpen} />}
+
+      {/* Nu este nevoie să verifici starea modalului aici, deoarece se face în TeamModal */}
     </>
   );
 };
+
+export default BtnTeamModal;
