@@ -1,25 +1,14 @@
-// TeamModal.js
-import React, { useEffect } from 'react';
-import { FcAbout } from 'react-icons/fc';
+import React, { useEffect, useCallback } from 'react';
 import { selectModalState } from '../../../redux/modal/selectors';
-import { toggleModal } from '../../../redux/modal/slice';
+import { toggleTeamModal } from '../../../redux/modal/slice';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './TeamModal.module.css';
-import { CloseBtn } from 'components/AddTransaction/AddTransaction.styled';
-import { Header } from 'components/Dashboard/Header/Header';
-import { useMediaQuery } from 'react-responsive';
-import TeamMember from '../../TeamMember/TeamMember'; // Importăm noul component
-import BtnTeamModal from 'components/BtnTeamModal/BtnTeamModal';
-
-const svgOpenModal = <FcAbout />;
+import { CloseBtn } from '../AddTransaction/AddTransaction.styled';
+import TeamMember from '../../TeamMember/TeamMember';
 
 const TeamModal = () => {
   const dispatch = useDispatch();
   const isModalOpen = useSelector(selectModalState);
-  const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
-  const openTeamModal = () => {
-    dispatch(toggleModal());
-  };
 
   const onBackdropClick = e => {
     if (e.target === e.currentTarget) {
@@ -27,9 +16,9 @@ const TeamModal = () => {
     }
   };
 
-  const closeModal = () => {
-    dispatch(toggleModal());
-  };
+  const closeModal = useCallback(() => {
+    dispatch(toggleTeamModal());
+  }, [dispatch]); // Memoizăm closeModal pentru a evita recrearea la fiecare render
 
   useEffect(() => {
     const handleEscape = e => {
@@ -42,25 +31,16 @@ const TeamModal = () => {
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [closeModal]);
+  }, [closeModal]); // Actualizăm lista de dependențe pentru useEffect
 
   return (
     <section
       className={`${css.backdrop} ${isModalOpen ? css.blurBackground : ''}`}
       onClick={onBackdropClick}
     >
-      {!isTabletOrDesktop && <Header />}
-      <BtnTeamModal type="button" onClick={openTeamModal}>
-        {svgOpenModal}
-      </BtnTeamModal>
-
       {isModalOpen && (
         <div className={css.modalLayout}>
-          <button
-            type="button"
-            className={css.closeBtn}
-            onClick={() => closeModal()}
-          >
+          <button type="button" className={css.closeBtn} onClick={closeModal}>
             <CloseBtn />
           </button>
           <h2 className={css['footer-font-title']}>Made by:</h2>

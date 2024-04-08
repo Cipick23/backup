@@ -19,7 +19,7 @@ export const DateWrapper = styled.div`
     background: transparent;
     outline: none;
     border: none;
-    border-bottom: 1px solid var(--transparency-40);
+    border-bottom: 1px solid var(--white-40);
 
     @media only screen and (min-width: 768px) {
       width: 181px;
@@ -38,8 +38,7 @@ export const CalendarIcon = styled(FiCalendar)`
   right: 17px;
   width: 24px;
   height: 24px;
-  color: var(--icon-violet);
-
+  color: var(--purple);
   pointer-events: none;
   @media only screen and (min-width: 768px) {
     right: 8px;

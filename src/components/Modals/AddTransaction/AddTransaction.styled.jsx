@@ -6,18 +6,19 @@ import Select from 'react-select';
 export const Backdrop = styled.div`
   position: fixed;
   flex-direction: column;
+  align-items: space-between;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
-  align-items: center;
   z-index: 10;
 
   &::before {
-    background-color: rgba(34, 13, 91, 0.23);
+    background: var(--Form-color, rgba(255, 255, 255, 0.1));
+    box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(50px);
     content: '';
-    backdrop-filter: blur(3.5px);
     position: absolute;
     inset: 0;
     z-index: -1;
@@ -34,9 +35,12 @@ export const Modal = styled.div`
   align-items: center;
   width: 100%;
   padding: 40px 20px;
+  background: var(--Form-color, rgba(255, 255, 255, 0.1));
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(50px);
   overflow: hidden;
   height: 100%;
+  justify-content: space-around;
 
   @media only screen and (min-width: 768px) {
     position: absolute;
@@ -45,9 +49,11 @@ export const Modal = styled.div`
     padding: 40px 73px;
     border-radius: 8px;
     height: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
   }
   &::before {
-    background-color: var(--transparency-10);
+    background-color: var(--transp-10);
     content: '';
     backdrop-filter: blur(50px);
     position: absolute;
@@ -93,10 +99,11 @@ export const Input = styled.input`
   padding-bottom: 8px;
   width: 280px;
   border: none;
-  border-bottom: 1px solid var(--transparency-40);
+  border-bottom: 1px solid var(--white-40);
+
   outline: none;
   background: transparent;
-  color: var(--white);
+  color: var(--white-60);
   font-size: 18px;
   font-family: 'Poppins-SemiBold', sans-serif;
   font-weight: 600;
@@ -107,7 +114,7 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    color: var(--transparency-60);
+    color: var(--white-60);
     font-family: 'Poppins-SemiBold', sans-serif;
     @media only screen and (min-width: 768px) {
       transform: translateX(40%);
@@ -123,18 +130,18 @@ export const CommentInputStyled = styled.input`
   padding-left: 20px;
   padding-bottom: 52px;
   font-size: 18px;
-  font-family: 'Poppins-SemiBold', sans-serif;
+  font-family: 'Poppins', sans-serif;
   width: 280px;
   border: none;
-  border-bottom: 1px solid var(--transparency-40);
+  border-bottom: 1px solid var(--white-40);
   background-color: transparent;
-  color: var(--white);
+  color: var(--white-60);
   outline: transparent;
   @media only screen and (min-width: 768px) {
   }
 
   &::placeholder {
-    color: var(--transparency-60);
+    color: var(--white-60);
     font-size: 18px;
     font-weight: 400;
   }
@@ -161,10 +168,11 @@ export const WrapSumCalendar = styled.div`
 
   @media only screen and (min-width: 768px) {
     outline: transparent;
+    align-items: baseline;
   }
 
   input::placeholder {
-    color: var(--transparency-60);
+    color: var(--white-60);
     text-align: start;
     font-size: 18px;
     font-family: 'Poppins-Bold', sans-serif;
@@ -244,7 +252,7 @@ export const BtnCancel = styled.button`
   outline: none;
   padding: 13px 10px;
   font-size: 18px;
-  color: var(--button-text-color);
+  color: var(--text-button);
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
   background-color: var(--white);
   text-align: center;
@@ -273,6 +281,7 @@ export const CloseModalBtn = styled.button`
   background-color: transparent;
   color: var(--white);
   transition: color 250ms ease-in-out;
+  cursor: pointer;
   @media only screen and (min-width: 768px) {
     display: flex;
     align-items: center;
@@ -280,7 +289,7 @@ export const CloseModalBtn = styled.button`
   }
   &:hover,
   &:focus {
-    color: var(--icon-violet);
+    scale: 1.2;
   }
 `;
 

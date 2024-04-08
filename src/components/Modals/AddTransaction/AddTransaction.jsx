@@ -1,17 +1,16 @@
-import 'react-datepicker/dist/react-datepicker.css';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilteredCategories } from '../../redux/transactions/selectors';
+import { selectFilteredCategories } from '../../../redux/transactions/selectors';
 import { components } from 'react-select';
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { date } from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, Controller } from 'react-hook-form';
-import { toast } from 'react-toastify';
 import { useMediaQuery } from 'react-responsive';
 import ReactDatePicker from 'react-datepicker';
-import { date } from 'yup';
-import { Header } from '../../components/Dashboard/Header/Header';
+import 'react-datepicker/dist/react-datepicker.css';
+import { Header } from '../../Dashboard/Header/Header';
 import {
   CloseBtn,
   CommentInputStyled,
@@ -37,8 +36,8 @@ import {
   Expense,
   SpanToggle,
   TransactionToggleWrap,
-} from '../AddTransaction/ToggleSwitch.styled';
-import { addTransactionThunk } from '../../redux/transactions/operations';
+} from './ToggleSwitch.styled';
+import { addTransactionThunk } from '../../../redux/transactions/operations';
 import {
   CalendarContainer,
   CalendarIcon,
@@ -132,15 +131,7 @@ export const AddTransaction = ({ closeModal }) => {
       ? formData.category
       : INCOME_CODE;
     transaction.transactionDate = transformDate(startDate);
-    dispatch(addTransactionThunk(transaction))
-      .unwrap()
-      .then(() => {
-        toast.success('Transaction successfully added');
-      })
-      .catch(err => {
-        console.log(err);
-        toast.error('Something went wrong, try again');
-      });
+    dispatch(addTransactionThunk(transaction)).unwrap();
     closeModal();
   }
 
@@ -321,6 +312,7 @@ export const AddTransaction = ({ closeModal }) => {
                   name="date"
                   control={control}
                   defaultValue={startDate}
+                  color="var(--white-60)"
                   render={() => (
                     <CalendarContainer>
                       <ReactDatePicker

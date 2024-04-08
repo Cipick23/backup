@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import minusIcon from '../../assets/minus.svg';
-import plusIcon from '../../assets/plus.svg';
+import minusIcon from '../../../assets/minus.svg';
+import plusIcon from '../../../assets/plus.svg';
 
 export const TransactionToggleWrap = styled.div`
   display: flex;
